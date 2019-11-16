@@ -14,7 +14,10 @@ var firebaseConfig = {
 
 var database = firebase.database();
 
-$("#submitbtn").on("click",function(){
+$("#submitbtn").on("click",function(event){
+    
+    event.preventDefault();
+
     var trainName = $("#train-name-input").val().trim();
     var trainDest = $("#train-destination-input").val().trim();
     var firstTrain = moment($("#train-time-input").val().trim(),"HH:mm").subtract(10,"years").format("X");
@@ -51,7 +54,8 @@ database.ref().on("child_added", function(snapshot){
     var remainder = moment().diff(moment.unix(firstTrain), "minutes")%frequency;
     var minutes = frequency - remainder;
     var arrival = moment().add(minutes,"m").format("HH:mm");
-    $("#trainScheduleTable > tbody").append("<tr><td>"+nam+"</td><td>"+destination+"</td><td>"+frequency+"</td><td>"+arrival+"</td><td>"+minutes+"</td></tr>");
+    
+    $("#trainScheduleTable > tbody").append("<tr><td>"+name+"</td><td>"+destination+"</td><td>"+frequency+"</td><td>"+arrival+"</td><td>"+minutes+"</td></tr>");
 
 
 });
