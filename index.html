@@ -1,73 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Train Activity</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script type="text/javascript" src=https://code.jquery.com/jquery-3.3.1.min.js> </script> 
+    <!--BootStrap link-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--FONT-->
+    <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!--Jquery link-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!--Firebase link-->
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
+
 </head>
+
 <body>
     <div class="container">
-        <div class="section1">
-            <div class="jumbotron jumbotron-fluid">
-                <div class="container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
                 <h1 class="display-4">Trains in the Area</h1>
                 <p class="lead">Check the schedule for your train</p>
-                </div>
             </div>
         </div>
-        <div class="section2">
-            <div class="card">
-                <div class="card-body">Current Train Schedule</div>
-            </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Train Name</th>
-                        <th scope="col">Destination</th>
-                        <th scope="col">Frequency (Min)</th>
-                        <th scope="col">Next Arrival</th>
-                        <th scope="col">Minutes Away</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">Train 1</th>
-                        <td>Denver</td>
-                        <td>25</td>
-                        <td>5:55 PM</td>
-                        <td>5</td>
-                    </tr>
-                </tbody>
-            </table>             
-        </div>
-        <br>
-        <div class="section3">
-            <div class="card">
-                <div class="card-body">Add Train</div>
-            </div>    
-            <form>
-                <div class="form-group">
-                    <label for="Input1">Train Name</label>
-                    <input class="form-control" id="name-input" type="text">
-                </div>
-                <div class="form-group">
-                    <label for="Select1">Destination</label>
-                    <input class="form-control" id="Dest-input" type="text">
-                       
-                </div>
-                <div class="form-group">
-                    <label for="Select2">First Train Time (HH:mm - military time)</label>
-                    <input class="form-control" id="time-input" type="time">
-                </div>
-                <div class="form-group">
-                    <label for="Textarea1">Frequency</label>
-                    <input class="form-control" id="frequency-input" type="frequency">
-                </div>
-            </form>
-        </div>        
     </div>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Current Train Schedule
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <table class="table" id="trainScheduleTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Train Name</th>
+                                <th scope="col">Destination</th>
+                                <th scope="col">Frequency (Min)</th>
+                                <th scope="col">Next Arrival</th>
+                                <th scope="col">Minutes Away</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Add a Train to the Schedule
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <form>
+                        <div class="form-group">
+                            <label for="">Train Name: </label>
+                            <input class="form-control" id="train-name-input" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Destination:</label>
+                            <input class="form-control" id="train-destination-input" type="text">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="">First Train Time: (HH:mm - military time) </label>
+                            <input class="form-control" id="train-time-input" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Frequency: </label>
+                            <input class="form-control" id="train-frequency-input" type="frequency">
+                        </div>
+                        <div class="col-auto">
+                            <button id="submitbtn" type="submit" class="btn btn-primary mb-2">Submit</button>
+                        </div>
+                    </form>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!--Custom JS file-->
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+
 </body>
+
 </html>

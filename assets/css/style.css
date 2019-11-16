@@ -1,0 +1,33 @@
+body{
+    background-image: url("../images/background\ train2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Muli', sans-serif;
+    font-size: 26px;
+    color: rgb(25, 25, 31);
+
+}
+.jumbotron {
+    background-color: black;
+    color: blanchedalmond;
+    
+}
+h1 {
+    text-align: center;
+    font-family: 'Muli', sans-serif;
+    font-weight: bold;
+    font-size: 100px;
+       
+}
+p {
+    text-align: center;
+    font-family: 'Muli', sans-serif; 
+}
+
+.card-header {
+    background-color: black;
+    color: blanchedalmond;
+}
+.card-body{
+  
+}
