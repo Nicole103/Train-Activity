@@ -65,7 +65,7 @@ var config = {
     console.log(trainFreq);
   
     // Prettify the first train time
-    var firstTrainPretty = moment(firstTrain, "hh:mm");
+    var firstTrainPretty = moment(firstTrain, "hh:mm").subtract(1, "years");
   
     // var currentTime = moment();
 
@@ -73,10 +73,11 @@ var config = {
     var diffTimeInMin = moment().diff(moment(firstTrainPretty, "X"), "minutes");
     console.log(diffTimeInMin);
 
-    var freqRemainingMin = diffTimeInMin % frequency;
-  
+    
+    var freqRemainingMin = diffTimeInMin % trainFreq;
+    
     // 
-    var nextArrivalTime = moment().add((frequency - freqRemainingMin), "minutes");
+    var nextArrivalTime = moment().add((trainFreq - freqRemainingMin), "minutes");
     console.log(nextArrivalTime);
   
     // Create the new row
@@ -85,8 +86,7 @@ var config = {
       $("<td>").text(trainDest),
       $("<td>").text(trainFreq),
       $("<td>").text(nextArrivalTime),
-      $("<td>").text(freqRemainingMin),
-     
+      $("<td>").text(freqRemainingMin)
     );
   
     $("#schedule-table > tbody").append(newRow);

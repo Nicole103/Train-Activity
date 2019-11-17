@@ -28,6 +28,13 @@ p {
     background-color: black;
     color: blanchedalmond;
 }
-.card-body{
-  
+
+th {
+    font-size: 20px;
 }
+
+td {
+    font-size: 18px;
+    font-weight: lighter;
+}
+
