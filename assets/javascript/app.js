@@ -20,7 +20,7 @@ var config = {
     // Grabs user input
     var trainName = $("#train-name-input").val().trim();
     var trainDest = $("#dest-input").val().trim();
-    var firstTrain = moment($("#first-train-input").val().trim(), "HH:mm").format("X");
+    var firstTrain = moment($("#first-train-input").val().trim(), "hh:mm").format("hh:mm");
     var trainFreq = $("#freq-input").val().trim();
   
     // object to send to firebase
@@ -65,20 +65,22 @@ var config = {
     console.log(trainFreq);
   
     // Prettify the first train time
-    var firstTrainPretty = moment(firstTrain, "hh:mm").subtract(1, "years");
+    var firstTimeConverted = moment(firstTrain, "hh:mm").subtract(1, "years");
+    console.log("first train conv: "+firstTimeConverted);
   
-    // var currentTime = moment();
+    var currentTime = moment();
+    console.log("current time: " +moment(currentTime).format("hh:mm"));
 
     // calculate the differenct between the first trian in minutes
-    var diffTimeInMin = moment().diff(moment(firstTrainPretty, "X"), "minutes");
-    console.log(diffTimeInMin);
+    var diffTimeInMin = moment().diff(moment(firstTimeConverted), "minutes");
+    console.log("difference in time:" +diffTimeInMin);
 
     
     var freqRemainingMin = diffTimeInMin % trainFreq;
     
-    // 
+     
     var nextArrivalTime = moment().add((trainFreq - freqRemainingMin), "minutes");
-    console.log(nextArrivalTime);
+    console.log("next train: " + moment(nextArrivalTime).format("hh:mm"));
   
     // Create the new row
     var newRow = $("<tr>").append(
