@@ -20,7 +20,7 @@ $("#add-train-btn").on("click", function (event) {
   // Grabs user input
   var trainName = $("#train-name-input").val().trim();
   var trainDest = $("#dest-input").val().trim();
-  var firstTrain = moment($("#first-train-input").val().trim(), "HH:mm").format("X");
+  var firstTrain = moment($("#first-train-input").val().trim(), "HH:mm").format("HH:mm");
   var trainFreq = $("#freq-input").val().trim();
 
     // object to send to firebase
@@ -65,29 +65,33 @@ database.ref().on("child_added", function (childSnapshot) {
   console.log(trainFreq);
 
 
-  var firstTrainPretty = moment(firstTrain, "hh:mm").subtract(1, "years");
+  var firstTrainPretty = moment(firstTrain, "HH:mm").subtract(1, "years");
   console.log(firstTrainPretty);
 
-  // var currentTime = moment();
-  
+  var currentTime = moment();
+  console.log("current time:" + moment(currentTime).format("HH:mm"));
 
    // calculate the differenct between the first trian in minutes
-  var diffTimeInMin = moment().diff(moment(firstTrainPretty, "X"), "minutes");
-  console.log(diffTimeInMin);
+  var diffTimeInMin = moment(currentTime).diff(moment(firstTrainPretty), "minutes");
+  console.log("different time " +diffTimeInMin);
 
   var freqRemainingMin = diffTimeInMin % trainFreq;
+  console.log("frequency remaining " +freqRemainingMin);
 
+  var minAway = trainFreq - freqRemainingMin;
+  console.log ("minutes away " +minAway);
 
-  var nextArrivalTime = moment().add((trainFreq - freqRemainingMin), "minutes");
-  console.log(nextArrivalTime);
+  var nextTrain = moment().add(minAway, "minutes");
+  console.log("arrival time:" +moment(nextTrain).format("HH:mm"));
+
 
   // Create the new row
   var newRow = $("<tr>").append(
     $("<td>").text(trainName),
     $("<td>").text(trainDest),
     $("<td>").text(trainFreq),
-    $("<td>").text(nextArrivalTime),
-    $("<td>").text(freqRemainingMin)
+    $("<td>").text(moment(nextTrain).format("HH:mm")),
+    $("<td>").text(minAway)
   );
 
 
